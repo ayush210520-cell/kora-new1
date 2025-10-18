@@ -1,0 +1,162 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  password         String
+  name             String
+  phone            String
+  isActive         Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  firebaseUid      String?   @unique
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  addresses        Address[]
+  orders           Order[]
+
+  @@map("users")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  price       Decimal     @db.Decimal(10, 2)
+  stock       Int         @default(0)
+  sizeStock   Json?       // Size-wise stock: {"S": 10, "M": 15, "L": 8, "XL": 5}
+  images      Json
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  categoryId  String
+  sku         String?     @unique
+  orderItems  OrderItem[]
+  category    Category    @relation(fields: [categoryId], references: [id])
+
+  @@map("products")
+}
+
+model Address {
+  id       String  @id @default(cuid())
+  name     String
+  phone    String
+  address  String
+  city     String
+  state    String
+  pincode  String
+  landmark String?
+  userId   String
+  user     User    @relation(fields: [userId], references: [id])
+  orders   Order[]
+
+  @@map("addresses")
+}
+
+model Order {
+  id                String        @id @default(cuid())
+  orderNumber       String        @unique
+  totalAmount       Decimal       @db.Decimal(10, 2)
+  paymentMethod     PaymentMethod
+  paymentStatus     PaymentStatus @default(PENDING)
+  orderStatus       OrderStatus   @default(PENDING)
+  razorpayOrderId   String?
+  razorpayPaymentId String?
+  delhiveryWaybill  String?
+  trackingUrl       String?
+  notes             String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  userId            String
+  addressId         String
+  qrPaymentLink     String?
+  shiprocketOrderId String?
+  shiprocketStatus  String?
+  orderItems        OrderItem[]
+  address           Address       @relation(fields: [addressId], references: [id])
+  user              User          @relation(fields: [userId], references: [id])
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  quantity  Int
+  price     Decimal @db.Decimal(10, 2)
+  orderId   String
+  productId String
+  size      String?
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("order_items")
+}
+
+enum PaymentMethod {
+  COD
+  PREPAID
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model DynamicImage {
+  id          String      @id @default(cuid())
+  title       String
+  description String?
+  imageUrl    String
+  position    String      // e.g., "hero-slider-1", "gallery-1", "banner-top"
+  category    String?     // e.g., "slider", "gallery", "banner"
+  isActive    Boolean     @default(true)
+  sortOrder   Int         @default(0)
+  altText     String?
+  linkUrl     String?     // Optional link when image is clicked
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("dynamic_images")
+}

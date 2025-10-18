@@ -1,0 +1,84 @@
+const orderConfirmationTemplate = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { background-color: #4CAF50; color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; margin: -20px -20px 20px -20px; }
+        .order-info { background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        .order-items { margin: 20px 0; }
+        .item { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+        .item img { width: 60px; height: 60px; object-fit: cover; margin-right: 15px; border-radius: 5px; }
+        .item-details { flex: 1; }
+        .item-name { font-weight: bold; margin-bottom: 5px; }
+        .item-price { color: #666; }
+        .total { background-color: #e8f5e8; padding: 15px; border-radius: 5px; text-align: right; font-size: 18px; font-weight: bold; }
+        .address { background-color: #fff3cd; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        .btn { display: inline-block; padding: 12px 24px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; margin: 10px 0; }
+        .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Order Confirmed! 🎉</h1>
+            <p>Thank you for your order, {{customerName}}!</p>
+        </div>
+
+        <div class="order-info">
+            <h3>Order Details</h3>
+            <p><strong>Order Number:</strong> {{orderNumber}}</p>
+            <p><strong>Order Date:</strong> {{orderDate}}</p>
+            <p><strong>Payment Method:</strong> {{paymentMethod}}</p>
+            <p><strong>Payment Status:</strong> {{paymentStatus}}</p>
+        </div>
+
+        <div class="order-items">
+            <h3>Items Ordered</h3>
+            {{#each orderItems}}
+            <div class="item">
+                {{#if image}}
+                <img src="{{image}}" alt="{{name}}">
+                {{/if}}
+                <div class="item-details">
+                    <div class="item-name">{{name}}</div>
+                    <div class="item-price">Quantity: {{quantity}} × ₹{{price}} = ₹{{total}}</div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <div class="total">
+            <strong>Total Amount: ₹{{totalAmount}}</strong>
+        </div>
+
+        <div class="address">
+            <h3>Delivery Address</h3>
+            <p><strong>{{deliveryAddress.name}}</strong></p>
+            <p>{{deliveryAddress.phone}}</p>
+            <p>{{deliveryAddress.address}}</p>
+            {{#if deliveryAddress.landmark}}
+            <p>Landmark: {{deliveryAddress.landmark}}</p>
+            {{/if}}
+            <p>{{deliveryAddress.city}}, {{deliveryAddress.state}} - {{deliveryAddress.pincode}}</p>
+        </div>
+
+        {{#if trackingUrl}}
+        <div style="text-align: center;">
+            <a href="{{trackingUrl}}" class="btn">Track Your Order</a>
+        </div>
+        {{/if}}
+
+        <div class="footer">
+            <p>If you have any questions, please contact us at <a href="mailto:{{supportEmail}}">{{supportEmail}}</a></p>
+            <p>Visit our store: <a href="{{storeUrl}}">{{storeUrl}}</a></p>
+            <p>© 2024 Your Store. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+`;

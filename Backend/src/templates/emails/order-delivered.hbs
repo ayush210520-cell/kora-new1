@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Delivered</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f9ecc2; }
+        .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(123,49,22,0.1); }
+        .header { background: linear-gradient(135deg, #7b3116 0%, #9d4421 100%); color: white; padding: 30px 20px; text-align: center; border-radius: 10px 10px 0 0; margin: -20px -20px 20px -20px; }
+        .celebration { font-size: 48px; text-align: center; margin: 20px 0; }
+        .order-info { background-color: #f9ecc2; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #7b3116; }
+        .order-info h3 { color: #7b3116; margin-top: 0; }
+        .order-items { margin: 20px 0; }
+        .item { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #f9ecc2; }
+        .item img { width: 60px; height: 60px; object-fit: cover; margin-right: 15px; border-radius: 5px; border: 2px solid #f9ecc2; }
+        .item-details { flex: 1; }
+        .item-name { font-weight: bold; margin-bottom: 5px; color: #7b3116; }
+        .item-price { color: #666; }
+        .btn { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #f9ecc2 0%, #fdf5d9 100%); color: #7b3116; text-decoration: none; border-radius: 8px; margin: 10px 5px; font-weight: bold; border: 2px solid #7b3116; }
+        .btn-primary { background: linear-gradient(135deg, #7b3116 0%, #9d4421 100%); color: white; border: none; box-shadow: 0 4px 10px rgba(123,49,22,0.3); }
+        .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 2px solid #f9ecc2; }
+        .footer a { color: #7b3116; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Order Delivered Successfully! 🎉</h1>
+            <p>Your order has reached you safely, {{customerName}}!</p>
+        </div>
+
+        <div class="celebration">🚛✨📦</div>
+
+        <div class="order-info">
+            <h3>Delivery Details</h3>
+            <p><strong>Order Number:</strong> {{orderNumber}}</p>
+            <p><strong>Order Date:</strong> {{orderDate}}</p>
+            <p><strong>Delivery Date:</strong> {{deliveryDate}}</p>
+            <p><strong>Total Amount:</strong> ₹{{totalAmount}}</p>
+        </div>
+
+        <div class="order-items">
+            <h3 style="color: #7b3116;">Items Delivered</h3>
+            {{#each orderItems}}
+            <div class="item">
+                <div style="width: 80px; height: 80px; margin-right: 15px; flex-shrink: 0;">
+                    {{#if image}}
+                    <img src="{{image}}" alt="{{name}}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 2px solid #f9ecc2; display: block;">
+                    {{else}}
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f9ecc2 0%, #fdf5d9 100%); border-radius: 8px; border: 2px solid #7b3116; display: flex; align-items: center; justify-content: center; color: #7b3116; font-weight: bold; font-size: 12px; text-align: center;">
+                        📦<br>Product
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="item-details">
+                    <div class="item-name">{{name}}</div>
+                    <div class="item-price">Quantity: {{quantity}} × ₹{{price}}</div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <h3>How was your experience?</h3>
+            <p>We'd love to hear about your experience with this order!</p>
+            <a href="{{reviewUrl}}" class="btn">Rate & Review</a>
+            <a href="{{storeUrl}}" class="btn btn-primary">Shop Again</a>
+        </div>
+
+        <div style="background-color: #e8f5e8; padding: 20px; border-radius: 5px; text-align: center;">
+            <h3>Thank You for Shopping With Us!</h3>
+            <p>We hope you love your purchase. Your satisfaction is our priority.</p>
+        </div>
+
+        <div class="footer">
+            <p>Need help? Contact us at <a href="mailto:{{supportEmail}}">{{supportEmail}}</a></p>
+            <p>Visit our store: <a href="{{storeUrl}}">{{storeUrl}}</a></p>
+            <p>© 2024 Your Store. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

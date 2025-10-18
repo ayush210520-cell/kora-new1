@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f9ecc2; }
+        .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(123,49,22,0.1); }
+        .header { background: linear-gradient(135deg, #7b3116 0%, #9d4421 100%); color: white; padding: 30px 20px; text-align: center; border-radius: 10px 10px 0 0; margin: -20px -20px 20px -20px; }
+        .welcome-content { text-align: center; padding: 20px 0; }
+        .btn { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #7b3116 0%, #9d4421 100%); color: white; text-decoration: none; border-radius: 8px; margin: 10px 0; font-weight: bold; box-shadow: 0 4px 10px rgba(123,49,22,0.3); }
+        .btn:hover { background: linear-gradient(135deg, #9d4421 0%, #7b3116 100%); }
+        .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 2px solid #f9ecc2; }
+        .footer a { color: #7b3116; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 style="margin: 0; font-size: 28px;">Welcome to KORAKAGAZ! 🎉</h1>
+            <p style="margin: 10px 0 0 0; font-size: 18px;">Namaste {{customerName}}!</p>
+        </div>
+
+        <div class="welcome-content">
+            <h2>Thank you for joining us!</h2>
+            <p>We're excited to have you as part of our community. Get ready to discover amazing products and exclusive deals!</p>
+            
+            <a href="{{storeUrl}}" class="btn">Start Shopping</a>
+        </div>
+
+        <div style="background-color: #f9ecc2; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #7b3116;">
+            <h3 style="color: #7b3116; margin-top: 0;">What's Next?</h3>
+            <ul style="text-align: left; color: #333;">
+                <li style="margin: 8px 0;">Browse our latest stationery products</li>
+                <li style="margin: 8px 0;">Add items to your wishlist</li>
+                <li style="margin: 8px 0;">Get notified about special offers</li>
+                <li style="margin: 8px 0;">Enjoy fast and secure checkout</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>Need help? Contact us at <a href="mailto:{{supportEmail}}">{{supportEmail}}</a></p>
+            <p>Visit our store: <a href="{{storeUrl}}">{{storeUrl}}</a></p>
+            <p style="color: #7b3116; font-weight: bold;">© 2024 KORAKAGAZ. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

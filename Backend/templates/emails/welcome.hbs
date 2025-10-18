@@ -1,0 +1,49 @@
+const welcomeTemplate = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { background-color: #6f42c1; color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; margin: -20px -20px 20px -20px; }
+        .welcome-content { text-align: center; padding: 20px 0; }
+        .btn { display: inline-block; padding: 12px 24px; background-color: #6f42c1; color: white; text-decoration: none; border-radius: 5px; margin: 10px 0; }
+        .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Our Store! 🎉</h1>
+            <p>Hi {{customerName}}!</p>
+        </div>
+
+        <div class="welcome-content">
+            <h2>Thank you for joining us!</h2>
+            <p>We're excited to have you as part of our community. Get ready to discover amazing products and exclusive deals!</p>
+            
+            <a href="{{storeUrl}}" class="btn">Start Shopping</a>
+        </div>
+
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
+            <h3>What's Next?</h3>
+            <ul style="text-align: left;">
+                <li>Browse our latest products</li>
+                <li>Add items to your wishlist</li>
+                <li>Get notified about special offers</li>
+                <li>Enjoy fast and secure checkout</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>Need help? Contact us at <a href="mailto:{{supportEmail}}">{{supportEmail}}</a></p>
+            <p>Visit our store: <a href="{{storeUrl}}">{{storeUrl}}</a></p>
+            <p>© 2024 Your Store. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
