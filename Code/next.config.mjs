@@ -32,6 +32,11 @@ const nextConfig = {
       console.log('🔗 API URL configured:', apiUrl)
     }
     
+    // In production, don't rewrite API calls - let Vercel handle them
+    if (process.env.NODE_ENV === 'production') {
+      return []
+    }
+    
     return [
       {
         source: '/api/:path*',
