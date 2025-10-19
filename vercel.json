@@ -1,9 +1,9 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
+  "buildCommand": "cd Code && npm run build",
+  "outputDirectory": "Code/.next",
+  "installCommand": "cd Code && npm install",
   "env": {
     "NEXT_PUBLIC_API_URL": "https://server.korakagazindia.com"
   },
@@ -13,7 +13,7 @@
     }
   },
   "functions": {
-    "app/api/**/*.js": {
+    "Code/app/api/**/*.js": {
       "runtime": "nodejs18.x"
     }
   }
