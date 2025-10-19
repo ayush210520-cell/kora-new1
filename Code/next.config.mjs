@@ -7,33 +7,17 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   
-  // Environment variables configuration (excluding NODE_ENV which is auto-set)
+  // Environment variables configuration
   env: {
-    // Firebase configuration
-    NEXT_PUBLIC_FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    NEXT_PUBLIC_FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-    
-    // API configuration
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
   
   async rewrites() {
-    // Get the API URL from environment variable or use AWS EC2 for production
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 
-      (process.env.NODE_ENV === 'production' ? 'https://server.korakagazindia.com' : 'http://localhost:3001')
-    
-    // Only log in development
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔗 API URL configured:', apiUrl)
-    }
-    
     // In development, rewrite API calls to local backend
     if (process.env.NODE_ENV === 'development') {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+      console.log('🔗 API URL configured:', apiUrl)
+      
       return [
         {
           source: '/api/:path*',
