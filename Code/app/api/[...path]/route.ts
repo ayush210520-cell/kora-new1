@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://server.korakagazindia.com';
+const API_BASE_URL = 'https://server.korakagazindia.com';
 
 export async function GET(
   request: NextRequest,
