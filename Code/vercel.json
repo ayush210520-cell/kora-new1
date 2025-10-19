@@ -1,8 +1,10 @@
 {
+  "version": 2,
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
+  "rootDirectory": "Code",
   "env": {
     "NEXT_PUBLIC_API_URL": "https://server.korakagazindia.com"
   },
