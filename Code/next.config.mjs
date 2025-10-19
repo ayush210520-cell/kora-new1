@@ -32,17 +32,18 @@ const nextConfig = {
       console.log('🔗 API URL configured:', apiUrl)
     }
     
-    // In production, don't rewrite API calls - let Vercel handle them
-    if (process.env.NODE_ENV === 'production') {
-      return []
+    // In development, rewrite API calls to local backend
+    if (process.env.NODE_ENV === 'development') {
+      return [
+        {
+          source: '/api/:path*',
+          destination: `${apiUrl}/api/:path*`,
+        },
+      ]
     }
     
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${apiUrl}/api/:path*`,
-      },
-    ]
+    // In production, use Next.js API routes as proxy
+    return []
   },
 
   async redirects() {
