@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Instagram, Facebook } from "lucide-react"
+import { getContactEmail } from "@/lib/config"
 
 export default function SiteFooter() {
   return (
@@ -25,8 +26,8 @@ export default function SiteFooter() {
             <h3 className="text-xl font-bold text-primary-brand">CONTACT US</h3>
             <ul className="space-y-3 text-base text-primary-brand">
               <li>
-                <a href="mailto:contact@korakagazindia.com" className="hover:text-primary-brand transition-colors hover:underline">
-                  contact@korakagazindia.com
+                <a href={`mailto:${getContactEmail()}`} className="hover:text-primary-brand transition-colors hover:underline">
+                  {getContactEmail()}
                 </a>
               </li>
               <li>

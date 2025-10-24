@@ -2,6 +2,7 @@
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
+import { getContactEmail } from "@/lib/config"
 
 export default function ReturnsPage() {
   return (
@@ -32,7 +33,7 @@ export default function ReturnsPage() {
                   <li><strong>Shipping cost:</strong> Don't worry! We provide free return shipping on your order.</li>
                   <li>Each order is eligible for a return only once.</li>
                   <li>The product must be unused, unwashed, and returned in its original packaging with all tags intact.</li>
-                  <li>Exchanges should be requested within 3 days of delivery by writing to us at <a href="mailto:contact@korakagazindia.com" className="text-primary-brand hover:underline">contact@korakagazindia.com</a>. Further steps will be communicated at the time of exchange.</li>
+                  <li>Exchanges should be requested within 3 days of delivery by writing to us at <a href={`mailto:${getContactEmail()}`} className="text-primary-brand hover:underline">{getContactEmail()}</a>. Further steps will be communicated at the time of exchange.</li>
                 </ul>
               </section>
 
@@ -45,7 +46,7 @@ export default function ReturnsPage() {
 
               <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">Contact Information</h2>
-                <p className="text-gray-700">Email: <a href="mailto:contact@korakagazindia.com" className="text-primary-brand hover:underline">contact@korakagazindia.com</a></p>
+                <p className="text-gray-700">Email: <a href={`mailto:${getContactEmail()}`} className="text-primary-brand hover:underline">{getContactEmail()}</a></p>
                 <p className="text-gray-700">Address: 24, Readymade Complex, Pardesipura, Indore, Madhya Pradesh, 452006, India</p>
               </div>
             </div>

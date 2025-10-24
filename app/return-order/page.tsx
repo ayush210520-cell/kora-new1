@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import { getContactEmail } from "@/lib/config"
 
 export default function ReturnOrderPage() {
   const [formData, setFormData] = useState({
@@ -114,8 +115,8 @@ export default function ReturnOrderPage() {
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600">
                   Need help? Contact us at{' '}
-                  <a href="mailto:contact@korakagazindia.com" className="text-primary-brand hover:underline">
-                    contact@korakagazindia.com
+                  <a href={`mailto:${getContactEmail()}`} className="text-primary-brand hover:underline">
+                    {getContactEmail()}
                   </a>
                 </p>
               </div>

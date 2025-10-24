@@ -4,6 +4,7 @@ import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
+import { getContactEmail } from "@/lib/config"
 
 interface FAQItem {
   question: string
@@ -84,7 +85,7 @@ export default function FAQPage() {
                   Can't find the answer you're looking for? Please contact our friendly customer support team.
                 </p>
                 <div className="space-y-2 text-sm text-gray-600">
-                  <p><strong>Email:</strong> contact@korakagazindia.com</p>
+                  <p><strong>Email:</strong> {getContactEmail()}</p>
                   <p><strong>Phone:</strong> <a href="tel:6261911729" className="text-primary-brand hover:underline">+91 6261-911729</a></p>
                   <p><strong>Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM IST</p>
                 </div>

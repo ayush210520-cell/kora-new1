@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { config } from '@/lib/config'
+import { getBaseUrl } from '@/lib/config'
 
 interface Product {
   id: string
@@ -13,7 +14,7 @@ interface Category {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://korakagazindia.com'
+  const baseUrl = getBaseUrl()
   
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [

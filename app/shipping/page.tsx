@@ -2,6 +2,7 @@
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
+import { getContactEmail } from "@/lib/config"
 
 export default function ShippingPage() {
   return (
@@ -68,7 +69,7 @@ export default function ShippingPage() {
                 <h2 className="text-xl font-semibold text-gray-900 mb-3">International Shipping</h2>
                 <p className="text-gray-700 leading-relaxed">
                   Currently, we ship within India. For international orders, please write to us
-                  at <a href="mailto:contact@korakagazindia.com" className="text-primary-brand hover:underline">contact@korakagazindia.com</a> and we'll be happy to help.
+                  at <a href={`mailto:${getContactEmail()}`} className="text-primary-brand hover:underline">{getContactEmail()}</a> and we'll be happy to help.
                 </p>
               </section>
             </div>

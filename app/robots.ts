@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { getFullUrl } from '@/lib/config'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -28,6 +29,6 @@ export default function robots(): MetadataRoute.Robots {
         '/private/',
       ],
     },
-    sitemap: 'https://korakagazindia.com/sitemap.xml',
+    sitemap: getFullUrl('/sitemap.xml'),
   }
 }

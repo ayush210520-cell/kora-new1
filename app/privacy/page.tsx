@@ -2,6 +2,7 @@
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
+import { getContactEmail } from "@/lib/config"
 
 export default function PrivacyPage() {
   return (
@@ -102,7 +103,7 @@ export default function PrivacyPage() {
                   If you have questions or concerns about this Privacy Policy, please contact us:
                 </p>
                 <div className="text-gray-700 space-y-1">
-                  <p><strong>Email:</strong> <a href="mailto:contact@korakagazindia.com" className="text-primary-brand hover:underline">contact@korakagazindia.com</a></p>
+                  <p><strong>Email:</strong> <a href={`mailto:${getContactEmail()}`} className="text-primary-brand hover:underline">{getContactEmail()}</a></p>
                   <p><strong>Address:</strong> 24, Readymade Complex, Pardesipura, Indore, Madhya Pradesh, 452006, India</p>
                 </div>
               </section>
