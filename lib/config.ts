@@ -18,13 +18,44 @@ export const getDomain = () => {
   }
   
   // In server environment, use environment variable or fallback
-  return process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || 'https://korakagazindia.com'
+  const vercelUrl = process.env.VERCEL_URL
+  if (vercelUrl) {
+    // Ensure Vercel URL has proper protocol
+    return vercelUrl.startsWith('http') ? vercelUrl : `https://${vercelUrl}`
+  }
+  
+  return process.env.NEXT_PUBLIC_SITE_URL || 'https://korakagazindia.com'
+}
+
+// Safe domain getter for build time
+export const getSafeDomain = () => {
+  try {
+    return getDomain()
+  } catch (error) {
+    console.warn('Error getting domain, using fallback:', error)
+    return 'https://korakagazindia.com'
+  }
+}
+
+// Validate and format URL
+const validateUrl = (url: string): string => {
+  try {
+    // If it's already a valid URL, return as is
+    new URL(url)
+    return url
+  } catch {
+    // If it's not a valid URL, try to fix it
+    if (!url.startsWith('http')) {
+      return `https://${url}`
+    }
+    return url
+  }
 }
 
 // Get base URL for the current domain
 export const getBaseUrl = () => {
   const domain = getDomain()
-  return domain
+  return validateUrl(domain)
 }
 
 // Get full URL for a path

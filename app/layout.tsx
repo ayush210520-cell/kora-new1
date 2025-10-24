@@ -5,7 +5,7 @@ import "./globals.css"
 import { CartProvider } from "@/contexts/cart-context"
 import { AuthProvider } from "@/contexts/auth-context"
 import { Toaster } from "@/components/ui/toaster"
-import { getBaseUrl, getFullUrl } from "@/lib/config"
+import { getBaseUrl, getFullUrl, getSafeDomain } from "@/lib/config"
 
 const questrial = Questrial({
   weight: "400",
@@ -49,14 +49,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(getBaseUrl()),
+  metadataBase: new URL(getSafeDomain()),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: getBaseUrl(),
+    url: getSafeDomain(),
     siteName: 'KORAKAGAZ',
     title: 'KORAKAGAZ',
     description: 'Unfold your story with our contemporary collection of women’s ethnic wear — where comfort meets charm. Each piece from Korakagaz celebrates fresh beginnings through thoughtful designs, handcrafted fabrics, and timeless silhouettes.',
@@ -150,7 +150,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "KORAKAGAZ",
-              "url": getBaseUrl(),
+              "url": getSafeDomain(),
               "logo": getFullUrl("/firstlogo.png"),
               "description": "Premium Traditional & Party Wear Fashion",
               "address": {
@@ -184,7 +184,7 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta property="og:title" content="KORAKAGAZ" />
         <meta property="og:description" content="Discover exclusive traditional and party wear fashion at KORAKAGAZ. Premium quality dresses, ethnic wear, and contemporary fashion for every occasion." />
-        <meta property="og:url" content={getBaseUrl()} />
+        <meta property="og:url" content={getSafeDomain()} />
         <meta property="og:image" content={getFullUrl("/firstlogo.png")} />
         <meta property="og:image:width" content="512" />
         <meta property="og:image:height" content="512" />
@@ -199,7 +199,7 @@ export default function RootLayout({
         {/* Additional SEO Meta Tags */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <link rel="canonical" href={getBaseUrl()} />
+        <link rel="canonical" href={getSafeDomain()} />
       </head>
       <body className={questrial.className}>
         <AuthProvider>

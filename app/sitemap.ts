@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { config } from '@/lib/config'
-import { getBaseUrl } from '@/lib/config'
+import { getSafeDomain } from '@/lib/config'
 
 interface Product {
   id: string
@@ -14,7 +14,7 @@ interface Category {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = getBaseUrl()
+  const baseUrl = getSafeDomain()
   
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
